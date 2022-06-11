@@ -13,27 +13,30 @@ def CrearCarritos():
             for i in range(caarrito):
                 carrito=i+1
                 PilaCarritoo.push(carrito)
-            PilaCarritoo.imprimirPilaCarrito()
+            
             print("\nSe agregaron los carritos correctamente :) ")
         else:
             print("Ingrese un número positivo plos :D")
     except Exception as e:
-            print("Ingrese una opcion válida plox :)",e)
+            print("Ingrese una opcion válida plox :)", e)
 idcliente1=1
 def AgregarClientes():
     global idcliente1 
     nombreCliente =str(input("Ingrese su nombre: "))
     if (PilaCarritoo.sizeC>0):
-        carrito = PilaCarritoo.pop()
-        ListaClientee.insertarCliente(idcliente1,nombreCliente,carrito)
+        carrito1 =PilaCarritoo.pop()
+        ListaClientee.insertarCliente(idcliente1,nombreCliente,carrito1)
         idcliente1+=1
         print("Se agregó el cliente con éxito :) ")
     else:
         print("No hay usuarios registrados")
 
-
-
-
+def verCliente():
+    idcliente1 = int(input("Ingrese el id cliente: "))
+    if(ListaClientee.busqueda(idcliente1) is not None):
+        ListaClientee.busqueda(id)
+        print()
+        
 
 def Menu():
     opcion = 0
@@ -65,10 +68,16 @@ def Menu():
                 AgregarClientes()
             elif opcion == 3:
                 print("Acá puede ver los clientes :D ")
+                verCliente()
+
             elif opcion == 4:
                 print("Hola, acá es la caja registradora :D ")
             elif opcion == 5:
                 print("Hola, acá puede visualizar los datos :D ")
+                print("Carritos: ")
+                PilaCarritoo.imprimirPilaCarrito()
+                print("\nClientes: ")
+                ListaClientee.imprimirLista()
             elif opcion == 6:
                 print("Saliendo.....")
                 print("Gracias por usar mi programda :v/ ")

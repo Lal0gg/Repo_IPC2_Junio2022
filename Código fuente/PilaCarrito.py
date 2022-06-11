@@ -30,7 +30,9 @@ class PilaCarrito:
             idcarrito= primero.idcarrito
             primero=primero.siguiente
             yield idcarrito
-    
+
+
+
     def pop(self):
         aux=self.ultimo
         if (aux.anterior!=None):
@@ -49,12 +51,3 @@ class PilaCarrito:
 
 
 
-# x =PilaCarrito()
-# x.push(1)
-# x.push(2)
-# x.push(3)
-# x.push(4)
-# x.push(5)
-# x.imprimir()
-# x.pop()
-# x.imprimir()
