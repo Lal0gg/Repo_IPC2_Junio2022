@@ -1,3 +1,6 @@
+import os
+from subprocess import check_output
+from tokenize import Name
 import xml.etree.ElementTree as ET
 
 #arbol empleados
@@ -88,6 +91,8 @@ def VerEmpleado(raiz1):
                 print('\t| Puesto: ', empleado.findall('puesto')[0].text,   end="|")
                 print('\t| Salario: ', empleado.findall('salario')[0].text, end="|")
                 print('\n\t|__________________________________________________________________________________|')
+                return
+    print("No se encontró el empleado :(")
 
 def eliminarEmpelado(raiz1):
     iddd = int(input("Ingrese el id del empleado: "))
@@ -97,6 +102,8 @@ def eliminarEmpelado(raiz1):
             if(iddd==idactual):
                 departamento.remove(empleado)
                 print("Empleado elminado")
+                return
+    print("No se encontró el empleado :( ")
 
 def menuDiscos(raiz2):
     opcion =0
@@ -195,8 +202,134 @@ def EliminarDisco(raiz2):
 def GenerarArchivoDiscos():
     arbol2.write('nuevoDisco.xml',"utf-8")
 
+def GraficarEmpleados(raiz1):
+    
+    contenido=""
+    contenido+="digraph G { \n"
+    contenido+='''node[shape=doublecircle,color=blue,fontname="Arial Black",style=filled,fillcolor="darkturquoise:aquamarine"] \n'''
+    contenido+="nodoRaiz[label=\"Empresa\" fontsize=35] \n"
 
-def menuReportes():
+    for departamento in raiz1:
+        NameNodoDep="nodoDepto"+departamento.attrib['departamento']
+
+        contenido+=NameNodoDep+"[label=\""+departamento.attrib['departamento']+"\"] \n"
+
+        contenido+="nodoRaiz ->"+NameNodoDep+"\n"
+
+        for empleado in departamento:
+
+            NameNodoIdEmp="nodoEmpl"+empleado.attrib['id']
+            contenido+=NameNodoIdEmp+"[label=\"Empleado: "+empleado.attrib['id']+"\"] \n"
+            contenido+=NameNodoDep+"->"+NameNodoIdEmp+"\n"
+
+            #Nombre
+            NameNodoNameEmp=NameNodoIdEmp+"name"
+            nameEmp=empleado.findall('nombre')[0].text
+            vargg=nameEmp.replace('"','\\"')
+            contenido+=NameNodoNameEmp+"[label=\"Nombre: "+vargg+" \"] \n"
+            contenido+=NameNodoIdEmp+"->"+NameNodoNameEmp+"\n"
+            
+            #Puesto
+            NameNodoPuestoEmp=NameNodoIdEmp+"Puest"
+            puestoEmp=empleado.findall('puesto')[0].text
+            varg=puestoEmp.replace('"','\\"')
+            contenido+=NameNodoPuestoEmp+"[label=\"Puesto: "+varg+" \"] \n"
+            contenido+=NameNodoIdEmp+"->"+NameNodoPuestoEmp+"\n"
+            
+            #Salario
+            NameNodoSalarioEmp=NameNodoIdEmp+"Salar"
+            salarioEmp=empleado.findall('salario')[0].text
+            varr=salarioEmp.replace('"','\\"')
+            contenido+=NameNodoSalarioEmp+"[label=\"Salario: "+varr+" \"] \n"
+            contenido+=NameNodoIdEmp+"->"+NameNodoSalarioEmp+"\n"
+
+
+    contenido+="}"
+
+    
+    archivoDot=open("comandos/archivo.dot",'w',encoding="utf-8")
+    archivoDot.write(contenido)
+    archivoDot.close()
+
+    #Print para verificar lo que escribimos
+    print(contenido)
+
+    #Ejecutar el comando en CMD
+    comandoDot = "dot -Tjpg comandos/archivo.dot -o reportes/reporteEmpleados.jpg"
+    check_output(comandoDot, shell=True)
+    # comandoDot2 = "dot -Tjpg comandos/archivo.dot -o reportes/reporte2.jpg"
+    # os.system(comandoDot2)
+
+def GraficarDiscos(raiz2):
+    contadorcd=1
+    contenido=""
+    contenido+="digraph G { \n"
+    contenido+='''node[shape=doublecircle,color=blue,fontname="Arial Black",style=filled,fillcolor="darkturquoise:aquamarine"] \n'''
+    contenido +='\nnodoRaiz[label=\"Catalog\" fontsize=35];\n'
+    for cd in raiz2:
+        
+        NameNodocd="nodoCd"+str(contadorcd)
+        contenido+=NameNodocd+"[label=\"Cd:  "+str(contadorcd)+"\"] \n"
+        contenido+="nodoRaiz ->"+NameNodocd+"\n"
+        #Title
+        NameNodoNameTitle=NameNodocd+"title"
+        titleCD=str(cd.findall('title')[0].text)
+        var1=titleCD.replace('"','\\"')
+        contenido+=NameNodoNameTitle+"[label=\"Title: "+var1+" \"] \n"
+        contenido+=NameNodocd+"->"+NameNodoNameTitle+"\n"
+
+        #Artist
+        NameNodoNameArtist=NameNodocd+"artist"
+        artistCD=str(cd.findall('artist')[0].text)
+        var2=artistCD.replace('"','\\"')
+        contenido+=NameNodoNameArtist+"[label=\"Artist: "+var2+" \"] \n"
+        contenido+=NameNodocd+"->"+NameNodoNameArtist+"\n"
+
+        #Country
+        NameNodoNameCountry=NameNodocd+"country"
+        countryCD=str(cd.findall('country')[0].text)
+        var3=countryCD.replace('"','\\"')
+        contenido+=NameNodoNameCountry+"[label=\"Country: "+var3+" \"] \n"
+        contenido+=NameNodocd+"->"+NameNodoNameCountry+"\n"
+
+        #Company
+        NameNodoNameCompany=NameNodocd+"company"
+        companyCD=str(cd.findall('company')[0].text)
+        var4=companyCD.replace('"','\\"')
+        contenido+=NameNodoNameCompany+"[label=\"Company: "+var4+" \"] \n"
+        contenido+=NameNodocd+"->"+NameNodoNameCompany+"\n"
+        
+        #Price
+        NameNodoNamePrice=NameNodocd+"price"
+        priceCD=str(cd.findall('price')[0].text)
+        var5=priceCD.replace('"','\\"')
+        contenido+=NameNodoNamePrice+"[label=\"Price: "+var5+" \"] \n"
+        contenido+=NameNodocd+"->"+NameNodoNamePrice+"\n"
+
+        #Year
+        NameNodoNameYear=NameNodocd+"year"
+        yearCD=str(cd.findall('year')[0].text)
+        var6=yearCD.replace('"','\\"')
+        contenido+=NameNodoNameYear+"[label=\"Year: "+var6+" \"] \n"
+        contenido+=NameNodocd+"->"+NameNodoNameYear+"\n"
+        contadorcd+=1
+    contenido+="}"
+
+    archivoDot=open("comandos/archivo2.dot",'w',encoding="utf-8")
+    archivoDot.write(contenido)
+    archivoDot.close()
+    print(contenido)
+    #Ejecutar el comando en CMD
+
+    comandoDot = "dot -Tjpg comandos/archivo2.dot -o reportes/reporteDiscos.jpg"
+    check_output(comandoDot, shell=True)
+
+    #comandoDot2 = "dot -Tjpg comandos/archivo.dot -o reportes/reporte2.jpg"
+    os.system(comandoDot)
+
+def VerificarArchivoExistente():    
+    pass
+def menuReportes(raiz1, raiz2):
     opcion =0
     while opcion!=3:
         try:
@@ -208,11 +341,13 @@ def menuReportes():
             print("= = = = = = = = = = = = = = = = = = = =  =")
             opcion=int(input("Ingrese la opción que desee: "))
             if(opcion ==1):
-                print("Reporte empleados (:")
+                GraficarEmpleados(raiz1)
+                print("Generando Reporte empelados. . .")
             elif(opcion ==2):
-                print("Reporte :Discos")
+                GraficarDiscos(raiz2)
+                print("Generando Reporte discos. . .")
             elif(opcion ==3):
-                print("Regreando. . .")
+                print("Regresando. . .")
                 break
             else: 
                 print("Ingrese una opción correcta plox :D")
@@ -276,7 +411,7 @@ while opcion!=5:
             menuDiscos(raiz2)
         elif opcion == 4:
             print("Hola, bienviedo a menu reportes :D ")  
-            menuReportes()
+            menuReportes(raiz1, raiz2)
         elif opcion == 5:
             print("Saliendo.....")
             print("Gracias por usar mi programda :v/ ")
