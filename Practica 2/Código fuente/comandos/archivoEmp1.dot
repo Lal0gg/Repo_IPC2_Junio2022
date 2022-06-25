@@ -1,0 +1,102 @@
+digraph G { 
+node[shape=doublecircle,color=blue,fontname="Arial Black",style=filled,fillcolor="darkturquoise:aquamarine"] 
+nodoRaiz[label="Empresa" fontsize=35] 
+nodoDeptoContabilidad[label="Contabilidad"] 
+nodoRaiz ->nodoDeptoContabilidad
+nodoEmpl1[label="Empleado: 1"] 
+nodoDeptoContabilidad->nodoEmpl1
+nodoEmpl1name[label="Nombre: José Ernesto "] 
+nodoEmpl1->nodoEmpl1name
+nodoEmpl1Puest[label="Puesto: Gerente general "] 
+nodoEmpl1->nodoEmpl1Puest
+nodoEmpl1Salar[label="Salario: 4000.00 "] 
+nodoEmpl1->nodoEmpl1Salar
+nodoEmpl2[label="Empleado: 2"] 
+nodoDeptoContabilidad->nodoEmpl2
+nodoEmpl2name[label="Nombre: Daniel Pérez "] 
+nodoEmpl2->nodoEmpl2name
+nodoEmpl2Puest[label="Puesto: Contador "] 
+nodoEmpl2->nodoEmpl2Puest
+nodoEmpl2Salar[label="Salario: 2000.00 "] 
+nodoEmpl2->nodoEmpl2Salar
+nodoDeptoRRHH[label="RRHH"] 
+nodoRaiz ->nodoDeptoRRHH
+nodoEmpl3[label="Empleado: 3"] 
+nodoDeptoRRHH->nodoEmpl3
+nodoEmpl3name[label="Nombre: Marta Torres "] 
+nodoEmpl3->nodoEmpl3name
+nodoEmpl3Puest[label="Puesto: Reclutadora "] 
+nodoEmpl3->nodoEmpl3Puest
+nodoEmpl3Salar[label="Salario: 3000.00 "] 
+nodoEmpl3->nodoEmpl3Salar
+nodoDeptoVentas[label="Ventas"] 
+nodoRaiz ->nodoDeptoVentas
+nodoEmpl4[label="Empleado: 4"] 
+nodoDeptoVentas->nodoEmpl4
+nodoEmpl4name[label="Nombre: Julio Gomez "] 
+nodoEmpl4->nodoEmpl4name
+nodoEmpl4Puest[label="Puesto: Vendedor "] 
+nodoEmpl4->nodoEmpl4Puest
+nodoEmpl4Salar[label="Salario: 4000.00 "] 
+nodoEmpl4->nodoEmpl4Salar
+nodoEmpl5[label="Empleado: 5"] 
+nodoDeptoVentas->nodoEmpl5
+nodoEmpl5name[label="Nombre: Mario Guerra "] 
+nodoEmpl5->nodoEmpl5name
+nodoEmpl5Puest[label="Puesto: Vendedor "] 
+nodoEmpl5->nodoEmpl5Puest
+nodoEmpl5Salar[label="Salario: 4000.00 "] 
+nodoEmpl5->nodoEmpl5Salar
+nodoEmpl6[label="Empleado: 6"] 
+nodoDeptoVentas->nodoEmpl6
+nodoEmpl6name[label="Nombre: Erick Vasquez "] 
+nodoEmpl6->nodoEmpl6name
+nodoEmpl6Puest[label="Puesto: Jefe de vendedores "] 
+nodoEmpl6->nodoEmpl6Puest
+nodoEmpl6Salar[label="Salario: 7000.00 "] 
+nodoEmpl6->nodoEmpl6Salar
+nodoDeptoCaja[label="Caja"] 
+nodoRaiz ->nodoDeptoCaja
+nodoEmpl7[label="Empleado: 7"] 
+nodoDeptoCaja->nodoEmpl7
+nodoEmpl7name[label="Nombre: Fernando Murcia "] 
+nodoEmpl7->nodoEmpl7name
+nodoEmpl7Puest[label="Puesto: Cajero "] 
+nodoEmpl7->nodoEmpl7Puest
+nodoEmpl7Salar[label="Salario: 5000.00 "] 
+nodoEmpl7->nodoEmpl7Salar
+nodoEmpl8[label="Empleado: 8"] 
+nodoDeptoCaja->nodoEmpl8
+nodoEmpl8name[label="Nombre: Emanuel Pineda "] 
+nodoEmpl8->nodoEmpl8name
+nodoEmpl8Puest[label="Puesto: Cajero "] 
+nodoEmpl8->nodoEmpl8Puest
+nodoEmpl8Salar[label="Salario: 4500.00 "] 
+nodoEmpl8->nodoEmpl8Salar
+nodoDeptoInformatica[label="Informatica"] 
+nodoRaiz ->nodoDeptoInformatica
+nodoEmpl9[label="Empleado: 9"] 
+nodoDeptoInformatica->nodoEmpl9
+nodoEmpl9name[label="Nombre: Christian Falla "] 
+nodoEmpl9->nodoEmpl9name
+nodoEmpl9Puest[label="Puesto: Desarrollador "] 
+nodoEmpl9->nodoEmpl9Puest
+nodoEmpl9Salar[label="Salario: 7000.00 "] 
+nodoEmpl9->nodoEmpl9Salar
+nodoEmpl10[label="Empleado: 10"] 
+nodoDeptoInformatica->nodoEmpl10
+nodoEmpl10name[label="Nombre: Pablo Cesar "] 
+nodoEmpl10->nodoEmpl10name
+nodoEmpl10Puest[label="Puesto: DBA "] 
+nodoEmpl10->nodoEmpl10Puest
+nodoEmpl10Salar[label="Salario: 6000.00 "] 
+nodoEmpl10->nodoEmpl10Salar
+nodoEmpl11[label="Empleado: 11"] 
+nodoDeptoInformatica->nodoEmpl11
+nodoEmpl11name[label="Nombre: Edvin Castro "] 
+nodoEmpl11->nodoEmpl11name
+nodoEmpl11Puest[label="Puesto: Tecnico "] 
+nodoEmpl11->nodoEmpl11Puest
+nodoEmpl11Salar[label="Salario: 5000.00 "] 
+nodoEmpl11->nodoEmpl11Salar
+}
